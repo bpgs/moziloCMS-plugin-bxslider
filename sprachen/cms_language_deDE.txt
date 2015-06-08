@@ -1,0 +1,2 @@
+error_nogallery 	= Es existiert keine Gallerie mit dem Namen "{PARAM1}"
+error_nopictures 	= Es existieren keine Bilder in der Gallerie "{PARAM1}"

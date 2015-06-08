@@ -1,0 +1,4 @@
+placeholder				= Returns the coinSlider
+description				= Generates a slideshow with images of a moziloCMS gallery. <br /><br /><span style='font-weight:bold'>Use:</span><br /><span style='font-family:monospace;margin:3px 3px; background-color:#eee;border:1px dotted #aaa;'>{coinSlider|name|width|height|spw|sph|delay|sDelay|opacity|titleSpeed|effect|navigation|links|hoverPause}</span> Inserts the slideshow of the moziloCMS gallery "name" and configures with the given parameters.<br /><br /><span style='font-weight:bold'>Documentation:</span><br />A detailed documentation can be found on <span style="font-style:italic;">www.devmount.de </span> (link above).
+config_prev				= Label Prev Button
+config_next 			= Label Next Button

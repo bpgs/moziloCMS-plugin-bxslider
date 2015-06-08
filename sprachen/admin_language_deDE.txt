@@ -1,0 +1,4 @@
+placeholder				= Gibt den bsSlider zurück.
+description				= Generiert eine Slideshow aus Bildern einer mozilo-Galerie. <br /><br /><span style='font-weight:bold'>Nutzung:</span><br /><span style='font-family:monospace;margin:3px 3px; background-color:#eee;border:1px dotted #aaa;'>{bxSlider|name|width|height|spw|sph|delay|sDelay|opacity|titleSpeed|effect|navigation|links|hoverPause}</span> Fügt die Slideshow der moziloCMS Galerie "name" ein und konfiguriert nach gegebenen Parametern.<br /><br /><span style='font-weight:bold'>Dokumentation:</span><br />Eine ausführliche Dokumentation ist auf <span style="font-style:italic">www.bpgs.de</span> zu finden (siehe obenstehender Link).
+config_prev				= Label Vorheriges Bild Button
+config_next 			= Label Nächstes Bild Button
