@@ -1,0 +1,1 @@
+# moziloCMS-plugin-bxslider
