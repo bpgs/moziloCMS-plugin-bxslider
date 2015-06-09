@@ -147,11 +147,12 @@ class bxSlider extends Plugin {
 			// pause The amount of time (in ms) between each auto transition
 			// pause default: 4000
 			'pause' => trim($values[6]),
+			// useCSS default: true, nutzt dann nur CSS-Effekte, wenn false dann wird jquery.easing.1.3.js benötigt, siehe easing
+			'useCSS' => trim($values[7]),
 			// easing Effekt, useCSS ist Standard true, daher nur CSS-Effekte
             // default: null options: if using CSS: 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(n,n,n,n)'.
-			'easing' => trim($values[7]),
-			// speed of title appereance in ms
-			'titleSpeed' => trim($values[8]),
+            // Effekt mit useCSS=false siehe
+			'easing' => trim($values[8]),
 			// effect
 			'effect' => '"' . trim($values[9]) . '"',
 			// show navigation
@@ -182,6 +183,7 @@ class bxSlider extends Plugin {
 		// jquery einfuegen
 		$syntax->insert_jquery_in_head('jquery');
 		$content .= '<script language="JavaScript" src="'.URL_BASE.PLUGIN_DIR_NAME.'/bxSlider/js/jquery.bxslider.min.js"></script>';
+        $content .= '<script language="JavaScript" src="'.URL_BASE.PLUGIN_DIR_NAME.'/bxSlider/js/plugins/jquery.easing.1.3.js"></script>';
 		// html for container; wichtig param auf params geaendert
 		$content .= '<ul id="'.str_replace(' ','_',rawurldecode($param_id)).'" class="bxslider"><!-- id aus Galery-Name -->';
 		foreach($pictures as $picture) {
@@ -221,11 +223,17 @@ class bxSlider extends Plugin {
         endif;
 		$autoControls="autoControls:".$params['autoControls'].", ";
 
-		if ($params['pause']==''):{
+        if ($params['pause']==''):{
 			$params['pause']='4000';
 			}
         endif;
 		$pause="pause:".$params['pause'].", ";
+
+		if ($params['useCSS']==''):{
+			$params['useCSS']='false';
+			}
+        endif;
+        $useCSS="useCSS:".$params['useCSS'].", ";
 
 		if ($params['easing']==''){
 			// $params['easing']='';
@@ -251,6 +259,7 @@ class bxSlider extends Plugin {
 		.$auto
 		.$autoControls
 		.$pause
+        .$useCSS
         .$easing
 		.'});';
 
@@ -308,7 +317,7 @@ class bxSlider extends Plugin {
 			'http://bpgs.de',
 			// Platzhalter für die Selectbox in der Editieransicht
 			array(
-				'{bxSlider|galeriename|options|captions|speed|auto|autoControls|pause|easing|titleSpeed|effect|navigation|links|hoverPause}' => $this->admin_lang->getLanguageValue('placeholder'),
+				'{bxSlider|galeriename|options|captions|speed|auto|autoControls|pause|useCSS|easing|effect|navigation|links|hoverPause}' => $this->admin_lang->getLanguageValue('placeholder'),
 				'{bxSlider|galeriename||||||||||||}' => $this->admin_lang->getLanguageValue('placeholder')
 			)
 		);
