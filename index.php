@@ -147,8 +147,9 @@ class bxSlider extends Plugin {
 			// pause The amount of time (in ms) between each auto transition
 			// pause default: 4000
 			'pause' => trim($values[6]),
-			// opacity of title and navigation
-			'opacity' => trim($values[7]),
+			// easing Effekt, useCSS ist Standard true, daher nur CSS-Effekte
+            // default: null options: if using CSS: 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(n,n,n,n)'.
+			'easing' => trim($values[7]),
 			// speed of title appereance in ms
 			'titleSpeed' => trim($values[8]),
 			// effect
@@ -160,13 +161,8 @@ class bxSlider extends Plugin {
 			// hoverpause
 			'hoverPause' => trim($values[12])
 		);
-		if ($params['mode']==''){
-			$params['mode']='horizontal';
-			}
-		if ($params['captions']==''){
-			$params['captions']=false;
-			}
-
+//echo $params['pause']."<br>";
+//echo $params['easing']."<br>";
 		// initialize gallery
 		include_once(BASE_DIR.'cms/GalleryClass.php');
 		$this->GalleryClass = new GalleryClass();
@@ -195,35 +191,50 @@ class bxSlider extends Plugin {
 		}
 		$content .= '</ul><!-- Ende id aus Galery-Name -->';
 
-		if ($params['mode']==''){
+		if ($params['mode']==''):{
 			$params['mode']='horizontal';
 			}
+        endif;
 		$mode="mode:'".$params['mode']."', ";
 
-		if ($params['captions']==''){
+		if ($params['captions']==''):{
 			$params['captions']='false';
 			}
+        endif;
 		$captions="captions:".$params['captions'].", ";
 
-		if ($params['speed']==''){
+		if ($params['speed']==''):{
 			$params['speed']='500';
 			}
+        endif;
 		$speed="speed:".$params['speed'].", ";
 
-		if ($params['auto']==''){
+		if ($params['auto']==''):{
 			$params['auto']='false';
 			}
+        endif;
 		$auto="auto:".$params['auto'].", ";
 
-		if ($params['autoControls']==''){
+		if ($params['autoControls']==''):{
 			$params['autoControls']='false';
 			}
+        endif;
 		$autoControls="autoControls:".$params['autoControls'].", ";
 
-		if ($params['pause']==''){
+		if ($params['pause']==''):{
 			$params['pause']='4000';
 			}
+        endif;
 		$pause="pause:".$params['pause'].", ";
+
+		if ($params['easing']==''){
+			// $params['easing']='';
+            $easing="easing:'', ";
+			} else {
+		$easing="easing:'".$params['easing']."', ";
+            }
+//echo $pause."<br>";
+//echo $easing."<br>";
 
 		// call bxslider
 		// $('.bxslider').bxSlider({mode: 'fade',captions: true});
@@ -240,6 +251,7 @@ class bxSlider extends Plugin {
 		.$auto
 		.$autoControls
 		.$pause
+        .$easing
 		.'});';
 
 		// remove last commata
@@ -296,7 +308,7 @@ class bxSlider extends Plugin {
 			'http://bpgs.de',
 			// Platzhalter für die Selectbox in der Editieransicht
 			array(
-				'{bxSlider|galeriename|options|captions|speed|auto|autoControls|pause|opacity|titleSpeed|effect|navigation|links|hoverPause}' => $this->admin_lang->getLanguageValue('placeholder'),
+				'{bxSlider|galeriename|options|captions|speed|auto|autoControls|pause|easing|titleSpeed|effect|navigation|links|hoverPause}' => $this->admin_lang->getLanguageValue('placeholder'),
 				'{bxSlider|galeriename||||||||||||}' => $this->admin_lang->getLanguageValue('placeholder')
 			)
 		);
